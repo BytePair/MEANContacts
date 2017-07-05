@@ -1,0 +1,25 @@
+<h2>{{title}}</h2>
+<div *ngIf="contact" class="row">
+    <form class="col-md-6 offset-md-3">
+        <div class="form-group">
+            <label for="contact-name">Name</label>
+            <input required class="form-control" name="contact-name" id="contact-name" [(ngModel)]="contact.name" placeholder="First Last"/>
+        </div>
+        <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input required class="form-control" name="contact-email" id="contact-email" [(ngModel)]="contact.email" placeholder="example@email.com"/>
+        </div>
+        <div class="form-group">
+            <label for="contact-phone-mobile">Mobile</label>
+            <input class="form-control" name="contact-phone-mobile" id="contact-phone-mobile" [(ngModel)]="contact.mobile" placeholder="123-456-7890"/>
+        </div>
+        <div class="form-group">
+            <label for="contact-phone-work">Work</label>
+            <input class="form-control" name="contact-phone-work" id="contact-phone-work" [(ngModel)]="contact.work" placeholder="987-654-3210"/>
+        </div>
+        <div class="button-holder">
+            <button class="btn btn-primary" type="submit" (click)="saveContact(contact)">Save</button>
+            <button class="btn btn-danger" type="reset" (click)="cancelContact(contact)">Cancel</button>
+        </div>
+    </form>
+</div>

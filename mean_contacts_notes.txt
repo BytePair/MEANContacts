@@ -18,7 +18,7 @@ Step 1. Set up the Development Environment
 Step 2. Create a new project
 
 	ng new my-app
-	
+
 Step 3. Run server.js
 
 	node server.js
@@ -34,5 +34,125 @@ Step 4. Serve the application
 			"secure": false
 		}
 	}
-	
-	
+
+
+
+
+/***********************************************************
+ *
+ *          	    Create Contacts List
+ *
+ **********************************************************/
+
+// import contacts
+import { Contact } from './contact';
+
+// array of contacts as placeholder
+const CONTACTS: Contact[] = [
+    { name: 'test1', email: 'test1@test.com', mobile: '1231231234', work: '1231231234'},
+    { name: 'test2', email: 'test1@test.com', mobile: '1231231234', work: '1231231234'},
+    { name: 'test3', email: 'test1@test.com', mobile: '1231231234', work: '1231231234'},
+    { name: 'test4', email: 'test1@test.com', mobile: '1231231234', work: '1231231234'},
+    { name: 'test5', email: 'test1@test.com', mobile: '1231231234', work: '1231231234'}
+];
+
+// handle clicks on contacts
+
+    // add click to list item
+    <li *ngFor="let contact of contacts" (click)="onSelect(hero)">
+
+    // functions for this AppComponent
+    onSelect(hero: Hero): void {
+        this.selectedHero = hero;
+    }
+
+
+// click will select this contact and if the contact is selected, apply selected class
+
+<li *ngFor="let contact of contacts"
+    (click)="onSelect(contact)"
+    [class.selected]="contact === selectedContact">
+    <a class="edit-button" (click)="editContact(contact)">E</a>
+    <span>{{ contact.name }}</span>
+    <a class="delete-button" (click)="deleteContact(contact)">D</a>
+</li>
+
+
+// create functions to handle button clicks
+
+onSelect(contact: Contact): void {
+    console.log('selected', contact.name);
+    this.selectedContact = contact;
+};
+
+editContact(contact: Contact): void {
+    console.log('edit', contact.name);
+};
+
+deleteContact(contact: Contact): void {
+    console.log('delete', contact.name);
+};
+
+
+
+/***********************************************************
+ *
+ *          	        Edit Contact
+ *
+ **********************************************************/
+
+
+/***** import { FormsModule } from '@angular/forms' inside app.module.ts *****/
+
+
+// Make contact form
+
+<h2>{{title}}</h2>
+<div *ngIf="contact" class="row">
+    <form class="col-md-6 offset-md-3">
+        <div class="form-group">
+            <label for="contact-name">Name</label>
+            <input required class="form-control" name="contact-name" id="contact-name" [(ngModel)]="contact.name" placeholder="First Last"/>
+        </div>
+        <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input required class="form-control" name="contact-email" id="contact-email" [(ngModel)]="contact.email" placeholder="example@email.com"/>
+        </div>
+        <div class="form-group">
+            <label for="contact-phone-mobile">Mobile</label>
+            <input class="form-control" name="contact-phone-mobile" id="contact-phone-mobile" [(ngModel)]="contact.mobile" placeholder="123-456-7890"/>
+        </div>
+        <div class="form-group">
+            <label for="contact-phone-work">Work</label>
+            <input class="form-control" name="contact-phone-work" id="contact-phone-work" [(ngModel)]="contact.work" placeholder="987-654-3210"/>
+        </div>
+        <div class="button-holder">
+            <button class="btn btn-primary" type="submit" (click)="saveContact(contact)">Create</button>
+            <button class="btn btn-danger" type="reset" (click)="cancelContact(contact)">Cancel</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+/***********************************************************
+ *
+ *          	        Contact Service
+ *
+ **********************************************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+

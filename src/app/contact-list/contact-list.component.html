@@ -1,0 +1,15 @@
+<h2>{{title}}</h2>
+<ul class="contacts">
+    <!-- click will select this contact -->
+    <!-- and if the contact is selected, apply selected class -->
+    <li *ngFor="let contact of contacts"
+        (click)="onSelect(contact)"
+        [class.selected]="contact === selectedContact">
+        <a class="edit-button" (click)="editContact(contact)">E</a>
+        <span>{{ contact.name }}</span>
+        <a class="delete-button" (click)="deleteContact(contact)">D</a>
+    </li>
+</ul>
+<div id="addButtonDiv">
+    <li id="addButton" (click)="newContact()">Add</li>
+</div>

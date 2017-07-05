@@ -1,0 +1,77 @@
+/* Add button should behave differently than regular contacts */
+
+#addButtonDiv {
+    margin: auto;
+    padding: .2em 1em 0em 1em;
+    list-style-type: none;
+    width: 25em;
+}
+
+#addButton {
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid #2C3E50;
+    height: 2.4em;
+    margin: .5em;
+    padding: .3em 0;
+    border-radius: 4px;
+    background-color: white;
+    color: #2C3E50;
+}
+
+#addButton:hover {
+    letter-spacing: 2px;
+}
+
+/* Below applies to all contact list items */
+
+.selected {
+    background-color: #969FA8 !important;
+    color: white;
+}
+
+.contacts {
+    margin: auto;
+    padding: 1em;
+    list-style-type: none;
+    width: 25em;
+}
+
+.contacts li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 2.4em;
+    border-radius: 4px;
+}
+
+.contacts li.selected:hover {
+    background-color: #2C3E50 !important;
+    color: white;
+}
+
+.contacts li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    letter-spacing: 2px;
+}
+
+.contacts .text {
+    position: relative;
+}
+
+
+/* Edit and Delete Buttons */
+
+.edit-button {
+    float: left;
+    margin-left: .6em;
+}
+
+.delete-button {
+    float: right;
+    margin-right: .6em;
+}
