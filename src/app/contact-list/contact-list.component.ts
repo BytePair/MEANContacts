@@ -30,28 +30,34 @@ export class ContactListComponent implements OnInit {
         private router: Router
     ) { }
 
+
     ngOnInit() {
         this.contacts = this.contactService.tempGetContacts();
     }
+
 
     onSelect(contact: Contact): void {
         console.log('selected', contact.name);
         this.selectedContact = contact;
     };
 
+
     // go to clean contact form page
     newContact(): void {
-        this.router.navigate(['/add']);
-    }
-
-    editContact(contact: Contact): void {
-        // TODO: implement edit contact button
-        this.router.navigate(['/edit'], { queryParams: { id: contact._id}});
-        console.log('edit', contact.name);
+        this.router.navigate(['/add'])
+            .catch(e => console.log('Error:', e));
     };
 
-    deleteContact(contact: Contact): void {
+
+    editContact(id: string): void {
+        // TODO: implement edit contact button
+        this.router.navigate(['/edit', id])
+            .catch(e => console.log('Error:', e));
+    };
+
+
+    deleteContact(id: string): void {
         // TODO: implement delete contact button
-        console.log('delete', contact.name);
+        console.log('delete contact:', id);
     };
 }

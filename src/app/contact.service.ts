@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import {Data} from '@angular/router';
 
 import { Contact } from './contact';
 
 import 'rxjs/add/operator/toPromise';
-
 
 
 // TODO: replace array of placeholder contacts
@@ -24,10 +24,14 @@ export class ContactService {
     // base url for all contacts api calls
     private contactsURL = '/api/contacts';
 
+    public workingContact: Contact;
+
 
     // functions for ContactService
 
-    constructor(private http: Http) { }
+    constructor(
+        private http: Http
+    ) { }
 
 
     // TODO: Return all contacts

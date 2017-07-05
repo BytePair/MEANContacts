@@ -36,21 +36,32 @@ export class ContactFormComponent implements OnInit {
     constructor(
         private contactService: ContactService,
         private location: Location,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) { }
 
+
     ngOnInit(): void {
-        // if route has an id as a parameter, bring up the correct contact for editing
-        // otherwise use a blank
-        this.route.queryParams.subscribe(params => {
-            console.log(params.id);
-            if (params.id) {
-                this.contact = this.contactService.tempGetContact(parseInt(params.id, 10));
-            } else {
-                this.contact = this.CLEAN_CONTACT;
-            }
-        })
-    }
+        const id = this.route.snapshot.paramMap.get('id');
+        if (id) {
+            // if passed an id, look up the contact
+            const tempContact = this.contactService.tempGetContact(parseInt(id, 10));
+            // do not edit the actual contact, will mess up contact list if user presses back
+            this.contact = {
+                _id: tempContact._id,
+                name: tempContact.name,
+                email: tempContact.email,
+                mobile: tempContact.mobile,
+                work: tempContact.work
+            };
+            console.log('found contact with id #' + id);
+        } else {
+            // otherwise use blank contact
+            this.contact = this.CLEAN_CONTACT;
+            console.log('using blank contact');
+        }
+    };
+
 
     saveContact(contact: Contact): void {
 
@@ -61,6 +72,7 @@ export class ContactFormComponent implements OnInit {
         // if not, create a new one
         console.log('save', contact.name);
     };
+
 
     cancelContact(contact: Contact): void {
         this.location.back();

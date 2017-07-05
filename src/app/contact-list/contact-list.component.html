@@ -5,9 +5,9 @@
     <li *ngFor="let contact of contacts"
         (click)="onSelect(contact)"
         [class.selected]="contact === selectedContact">
-        <a class="edit-button" (click)="editContact(contact)">E</a>
+        <a class="edit-button" (click)="editContact(contact._id)">E</a>
         <span>{{ contact.name }}</span>
-        <a class="delete-button" (click)="deleteContact(contact)">D</a>
+        <a class="delete-button" (click)="deleteContact(contact._id)">D</a>
     </li>
 </ul>
 <div id="addButtonDiv">

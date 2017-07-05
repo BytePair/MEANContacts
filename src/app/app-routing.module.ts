@@ -11,7 +11,8 @@ const routes: Routes = [
     { path: '#', redirectTo: '', pathMatch: 'full' },
     { path: '',  component: ContactListComponent },
     { path: 'add', component: ContactFormComponent },
-    { path: 'edit', component: ContactFormComponent }
+    { path: 'edit', redirectTo: 'add', pathMatch: 'full' },
+    { path: 'edit/:id', component: ContactFormComponent }
 ];
 
 
