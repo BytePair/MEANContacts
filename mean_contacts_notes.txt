@@ -1,0 +1,38 @@
+/***********************************************************
+ *
+ *          			Initial Setup
+ *
+ **********************************************************/
+
+
+// Official Documentation
+
+	https://github.com/angular/angular-cli
+
+
+Step 1. Set up the Development Environment
+
+	npm install -g @angular/cli
+
+
+Step 2. Create a new project
+
+	ng new my-app
+	
+Step 3. Run server.js
+
+	node server.js
+
+Step 4. Serve the application
+
+	cd my-app
+	ng serve --proxy-config proxy.conf.json
+
+	{
+		"/api": {
+			"target": "http://localhost:4300",
+			"secure": false
+		}
+	}
+	
+	
