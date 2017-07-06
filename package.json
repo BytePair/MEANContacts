@@ -2,10 +2,10 @@
     "name": "meancontacts",
     "version": "0.0.1",
     "license": "MIT",
-    "main": "server.js",
+    "main": "./server/server.js",
     "scripts": {
         "ng": "ng",
-        "start": "node server.js",
+        "start": "node ./server/server.js",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
