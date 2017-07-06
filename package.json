@@ -2,10 +2,11 @@
     "name": "meancontacts",
     "version": "0.0.1",
     "license": "MIT",
-    "main": "./server/server.js",
+    "main": "server.js",
     "scripts": {
         "ng": "ng",
-        "start": "node ./server/server.js",
+        "start": "node server.js",
+        "postinstall": "ng build --aot -prod",
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
@@ -30,7 +31,14 @@
         "jquery-ui": "^1.12.1",
         "rxjs": "^5.1.0",
         "tether": "^1.4.0",
-        "zone.js": "^0.8.4"
+        "zone.js": "^0.8.4",
+        "body-parser": "^1.17.2",
+        "cookie-parser": "^1.4.3",
+        "debug": "~2.6.3",
+        "express": "^4.15.3",
+        "mongodb": "^2.2.29",
+        "morgan": "^1.8.2",
+        "path": "^0.12.7"
     },
     "devDependencies": {
         "@angular/cli": "1.2.0",
