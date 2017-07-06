@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // Create link to Angular build directory
-app.use(express.static(path.join(__dirname, '/dist/')));
+app.use(express.static(path.join(__dirname, '../dist/')));
 
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
