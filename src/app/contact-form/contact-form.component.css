@@ -6,3 +6,13 @@ form {
 .button-holder {
     text-align: center;
 }
+
+span.required-message {
+    font-size: .8em;
+}
+
+span.error-message {
+    color: red;
+    font-size: .8em;
+    display: block;
+}

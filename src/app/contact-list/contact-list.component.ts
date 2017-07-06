@@ -21,6 +21,7 @@ export class ContactListComponent implements OnInit {
     title = 'Contacts';
     contacts: Contact[];
     selectedContact: Contact;
+    modalContact: Contact;
 
 
     // functions for ContactListComponent
@@ -31,33 +32,60 @@ export class ContactListComponent implements OnInit {
     ) { }
 
 
+    // get full list of contacts when contact list loads
     ngOnInit() {
-        this.contacts = this.contactService.tempGetContacts();
+        this.refreshContacts();
+    }
+
+    // refresh contact list when loading page or deleting contact
+    refreshContacts() {
+        this.contactService.getContacts()
+            .then(response => this.contacts = response)
+            .catch(error => console.error(error));
+    }
+
+    // sets the selected contact and shows the modal
+    onSelect(contact: Contact): void {
+        this.selectedContact = contact;
     }
 
 
-    onSelect(contact: Contact): void {
-        console.log('selected', contact.name);
-        this.selectedContact = contact;
-    };
+    // remove selected class
+    resetSelected(): void {
+        this.selectedContact = null;
+    }
 
 
     // go to clean contact form page
     newContact(): void {
         this.router.navigate(['/add'])
-            .catch(e => console.log('Error:', e));
-    };
+            .catch(e => console.error('Error:', e));
+    }
 
 
+    // go to contact form w/ details filled out
     editContact(id: string): void {
-        // TODO: implement edit contact button
         this.router.navigate(['/edit', id])
-            .catch(e => console.log('Error:', e));
-    };
+            .catch(e => console.error('Error:', e));
+    }
 
 
+    // delete contact with the specified id, and refresh the list
     deleteContact(id: string): void {
-        // TODO: implement delete contact button
-        console.log('delete contact:', id);
-    };
+        this.contactService.deleteContact(id)
+            .then(() => this.refreshContacts())
+            .catch(error => console.error(error));
+    }
+
+
+    // enable list item clicking
+    enablePointer(event) {
+    }
+
+
+    // disable list item clicking
+    disablePointer(event) {
+    }
+
+
 }

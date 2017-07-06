@@ -32,8 +32,8 @@ footer {
 }
 
 .social-media-link-hover {
-    color: #969FA8;
-    background-color: white;
+    color: #969FA8!important;
+    background-color: white!important;
 }
 
 @media (max-width: 499px) {

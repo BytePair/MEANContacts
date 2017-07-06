@@ -1,24 +1,52 @@
 <h2>{{title}}</h2>
 <div *ngIf="contact" class="row">
-    <form class="col-md-6 offset-md-3">
+    <form #contactForm="ngForm" id="contact-form-id" class="col-lg-6 offset-lg-3" name="contact-form" (ngSubmit)="saveContact(contact)">
         <div class="form-group">
-            <label for="contact-name">Name</label>
-            <input required class="form-control" name="contact-name" id="contact-name" [(ngModel)]="contact.name" placeholder="First Last"/>
+            <label for="contact-name">Name <Span class="required-message" *ngIf="name.hasError('required')">(Required)</Span></label>
+            <input class="form-control" name="contact-name" id="contact-name" placeholder="First Last"
+                   [(ngModel)]="contact.name"
+                   #name="ngModel"
+                   maxlength="25"
+                   required/>
         </div>
         <div class="form-group">
-            <label for="contact-email">Email</label>
-            <input required class="form-control" name="contact-email" id="contact-email" [(ngModel)]="contact.email" placeholder="example@email.com"/>
+            <label for="contact-email">Email <Span class="required-message" *ngIf="email.hasError('required')">(Required)</Span></label>
+            <input class="form-control" name="contact-email" id="contact-email" placeholder="example@email.com"
+                   [(ngModel)]="contact.email"
+                   #email="ngModel"
+                   pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                   maxlength="25"
+                   required/>
+            <Span class="error-message" *ngIf="email.hasError('pattern')">Email should be in form: abc@xyz.com</Span>
         </div>
         <div class="form-group">
             <label for="contact-phone-mobile">Mobile</label>
-            <input class="form-control" name="contact-phone-mobile" id="contact-phone-mobile" [(ngModel)]="contact.mobile" placeholder="123-456-7890"/>
+            <input class="form-control" name="contact-phone-mobile" id="contact-phone-mobile" placeholder="123-456-7890"
+                   [(ngModel)]="contact.phone.mobile"
+                   #mobile="ngModel"
+                   minlength="10"
+                   maxlength="10"
+                   pattern="[0-9]*"/>
+            <div [hidden]="mobile.valid || mobile.pristine">
+                <Span class="error-message" *ngIf="mobile.hasError('minlength')">Phone number must be 10 numbers long</Span>
+                <Span class="error-message" *ngIf="mobile.hasError('pattern')">Phone number must only contain numbers</Span>
+            </div>
         </div>
         <div class="form-group">
             <label for="contact-phone-work">Work</label>
-            <input class="form-control" name="contact-phone-work" id="contact-phone-work" [(ngModel)]="contact.work" placeholder="987-654-3210"/>
+            <input class="form-control" name="contact-phone-work" id="contact-phone-work" placeholder="987-654-3210"
+                   [(ngModel)]="contact.phone.work"
+                   #work="ngModel"
+                   minlength="10"
+                   maxlength="10"
+                   pattern="[0-9]*" />
+            <div [hidden]="work.valid || work.pristine">
+                <Span class="error-message" *ngIf="work.hasError('minlength') || work.hasError('maxlength')">Phone number must be 10 numbers long</Span>
+                <Span class="error-message" *ngIf="work.hasError('pattern')">Phone number must only contain numbers</Span>
+            </div>
         </div>
         <div class="button-holder">
-            <button class="btn btn-primary" type="submit" (click)="saveContact(contact)">Save</button>
+            <button class="btn btn-primary" type="submit" [disabled]="!contactForm.form.valid">Save</button>
             <button class="btn btn-danger" type="reset" (click)="cancelContact(contact)">Cancel</button>
         </div>
     </form>

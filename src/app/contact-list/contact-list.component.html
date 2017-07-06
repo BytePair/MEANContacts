@@ -1,15 +1,51 @@
 <h2>{{title}}</h2>
-<ul class="contacts">
+<ul class="contacts col-lg-6 offset-lg-3">
     <!-- click will select this contact -->
     <!-- and if the contact is selected, apply selected class -->
     <li *ngFor="let contact of contacts"
-        (click)="onSelect(contact)"
         [class.selected]="contact === selectedContact">
-        <a class="edit-button" (click)="editContact(contact._id)">E</a>
-        <span>{{ contact.name }}</span>
-        <a class="delete-button" (click)="deleteContact(contact._id)">D</a>
+        <a class="col-2 edit-button" (click)="editContact(contact._id)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+        <span class="col-8 contact-span"
+            (click)="onSelect(contact)"
+            data-toggle="modal" data-target="#userDetailsModal" data-backdrop="static" data-keyboard="false">
+            {{ contact.name }}</span>
+        <a class="col-2 delete-button" (click)="deleteContact(contact._id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
     </li>
 </ul>
-<div id="addButtonDiv">
+<div id="addButtonDiv" class="col-lg-6 offset-lg-3">
     <li id="addButton" (click)="newContact()">Add</li>
 </div>
+
+
+
+
+<!-- Trigger the modal with a button
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#userDetailsModal">Open Modal</button>
+-->
+<!-- Modal -->
+<div class="modal fade" id="userDetailsModal" role="dialog" *ngIf="selectedContact">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 id="user-modal-title">{{ selectedContact.name }} Details</h4>
+            </div>
+            <div id="user-modal-body">
+                <p class="modal-user-details">Name: {{ selectedContact.name }}</p>
+                <p class="modal-user-details">Email: <a href="mailto:{{selectedContact.email}}">{{ selectedContact.email }}</a></p>
+                <p class="modal-user-details" *ngIf="selectedContact.phone.mobile">
+                    Mobile: ({{selectedContact.phone.mobile.substr(0, 3)}}) {{selectedContact.phone.mobile.substr(3, 3)}} {{selectedContact.phone.mobile.substr(6, 4)}}
+                </p>
+                <p class="modal-user-details" *ngIf="selectedContact.phone.work">
+                    Work: ({{selectedContact.phone.work.substr(0, 3)}}) {{selectedContact.phone.work.substr(3, 3)}} {{selectedContact.phone.work.substr(6, 4)}}
+                </p>
+            </div>
+            <div id="user-modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="resetSelected()">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+

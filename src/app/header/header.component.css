@@ -13,6 +13,7 @@
 
 .shrink-navbar {
     padding: 0px 0px;
+    transition: all 0.5s ease;
 }
 
 @media (max-width: 575px) {
@@ -42,6 +43,10 @@
     letter-spacing: 1px;
     transition: all 0.5s ease;
     outline: none!important;
+}
+
+.nav-link {
+    transition: all 0.5s ease;
 }
 
 .nav-link-hover {
