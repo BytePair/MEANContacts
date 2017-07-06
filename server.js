@@ -80,7 +80,6 @@ app.post("/api/contacts", function(req, res) {
     // of data submitted in the request body. By default, it is undefined, and is
     // populated when you use body-parsing middleware such as body-parser and multer.
     var newContact = req.body;
-    console.log('inside /api/contacts POST');
 
     // if new contact is missing name
     if (!req.body.name) {
