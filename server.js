@@ -1,8 +1,5 @@
 var express = require("express");
-var path = require('path');
 var bodyParser = require("body-parser");
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
@@ -15,15 +12,12 @@ var app = express();
 
 
 // for parsing application/json
-app.use(logger('dev'));
-app.use(cookieParser());
-// for parsing application/json
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // Create link to Angular build directory
-app.use(express.static(path.join(__dirname, '/dist/')));
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
