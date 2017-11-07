@@ -17,7 +17,6 @@ export class ContactListComponent implements OnInit {
 
 
     // variables for ContactListComponent
-
     title = 'Contacts';
     contacts: Contact[];
     selectedContact: Contact;
@@ -25,7 +24,6 @@ export class ContactListComponent implements OnInit {
 
 
     // functions for ContactListComponent
-
     constructor(
         private contactService: ContactService,
         private router: Router
